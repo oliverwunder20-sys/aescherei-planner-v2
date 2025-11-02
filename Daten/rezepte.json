@@ -1,1 +1,11 @@
+{
+  "21": { "name": "LWC Schwöde Frischware sd Bullen außer Autoleder", "aescherdauerStd_h": 15, "waschen": "auto" },
+  "22": { "name": "LWC Schwöde Frischware sd Kühe",                    "aescherdauerStd_h": 15, "waschen": "auto" },
+  "23": { "name": "LWC Schwöde Flanken",                                "aescherdauerStd_h": 15, "waschen": "auto" },
+  "24": { "name": "LWC Schwöde Frischware sd Bullen außer Autoleder",   "aescherdauerStd_h": 15, "waschen": "auto" },
+  "25": { "name": "LWC Schwöde Frischware sb Ware Sep–Apr",             "aescherdauerStd_h": 15, "waschen": "auto", "konservierung": "über_nacht" },
+  "26": { "name": "LWC Schwöde Salzware sd Ware außer Autoleder",       "aescherdauerStd_h": 15, "waschen": "auto" },
+  "30": { "name": "EC Liming (Kälber, unsplitted)",                      "aescherdauerStd_h": 26, "waschen": "auto" },
+  "31": { "name": "MW Liming unsplitted (Kälber)",                       "aescherdauerStd_h": 26, "waschen": "auto" }
+}
 
