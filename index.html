@@ -3,12 +3,12 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Äscherei & Spalt – Planer v2</title>
+  <title>Äscherei & Spalt – Planer</title>
   <link rel="manifest" href="manifest.json" />
+  <meta name="theme-color" content="#0d1b2a" />
   <link rel="icon" href="assets/icon-192.png" />
   <link rel="apple-touch-icon" href="assets/icon-512.png" />
   <link rel="stylesheet" href="styles.css" />
-  <meta name="theme-color" content="#0d1b2a" />
 </head>
 <body>
 <header class="topbar">
@@ -18,34 +18,29 @@
     <small id="modusBadge" class="badge"></small>
   </div>
   <nav class="actions">
-    <button id="btnNeu" class="btn pri">
-      <svg class="i"><use href="assets/suedleder-icons.svg#plus"/></svg> Neuer Eintrag
-    </button>
-    <button id="btnExport" class="btn">
-      <svg class="i"><use href="assets/suedleder-icons.svg#export"/></svg> Export
-    </button>
-    <button id="btnImport" class="btn">
-      <svg class="i"><use href="assets/suedleder-icons.svg#import"/></svg> Import
-    </button>
-    <button id="btnEinstellungen" class="btn">
-      <svg class="i"><use href="assets/suedleder-icons.svg#settings"/></svg> Einstellungen
-    </button>
+    <button id="btnNeu" class="btn pri"><svg class="i"><use href="assets/suedleder-icons.svg#plus"/></svg>Neuer Eintrag</button>
+    <button id="btnWochenansicht" class="btn"><svg class="i"><use href="assets/suedleder-icons.svg#calendar"/></svg>Woche</button>
+    <button id="btnExport" class="btn"><svg class="i"><use href="assets/suedleder-icons.svg#export"/></svg>Export</button>
+    <button id="btnImport" class="btn"><svg class="i"><use href="assets/suedleder-icons.svg#import"/></svg>Import</button>
+    <button id="btnDaten" class="btn"><svg class="i"><use href="assets/suedleder-icons.svg#db"/></svg>Daten-Editor</button>
+    <button id="btnEinstellungen" class="btn"><svg class="i"><use href="assets/suedleder-icons.svg#settings"/></svg>Einstellungen</button>
   </nav>
 </header>
 
 <main class="wrap">
   <section class="filters">
-    <label>Tag:
+    <label>Tag
       <input type="date" id="tagInput"/>
     </label>
-    <label>Schicht:
+    <label>Schicht
       <select id="schichtSelect">
+        <option value="">Alle</option>
         <option value="frueh">Früh</option>
         <option value="spaet">Spät</option>
         <option value="nacht">Nacht</option>
       </select>
     </label>
-    <label>SPS:
+    <label>SPS
       <select id="spsFilter">
         <option value="">Alle</option>
         <option value="SPS 1">SPS 1</option>
@@ -53,6 +48,12 @@
       </select>
     </label>
     <button id="btnHeute" class="btn">Heute</button>
+    <div class="legend">
+      <span class="ampel ok">OK</span>
+      <span class="ampel warn">Grenze</span>
+      <span class="ampel err">Über Limit</span>
+      <span class="ampel info">Timer läuft</span>
+    </div>
   </section>
 
   <section class="table-card">
@@ -63,6 +64,7 @@
             <th>#</th>
             <th>Start</th>
             <th>SPS</th>
+            <th>Fasstyp</th>
             <th>RZ</th>
             <th>Wechsel (C/UC)</th>
             <th>Gattung</th>
@@ -71,9 +73,10 @@
             <th>Stück (Auto)</th>
             <th>Konservierung</th>
             <th>Waschen</th>
-            <th>Äscher ⌀ (h)</th>
-            <th>LZ gesamt</th>
+            <th>Äscher ⌀</th>
+            <th>Gesamt</th>
             <th>Fertig</th>
+            <th>Rest</th>
             <th>Status</th>
             <th>Notiz</th>
             <th></th>
@@ -85,34 +88,26 @@
   </section>
 </main>
 
-<!-- Dialog: Neuer/Ändern -->
+<!-- Eintrag-Dialog -->
 <dialog id="eintragDialog">
   <form method="dialog" class="dlg">
     <h3 id="dlgTitel">Eintrag</h3>
     <div class="grid">
-      <label>Start <input type="time" id="f_start" required></label>
+      <label>Start <input type="time" id="f_start"></label>
       <label>SPS
-        <select id="f_sps" required>
-          <option>SPS 1</option>
-          <option>SPS 2</option>
-        </select>
+        <select id="f_sps"><option>SPS 1</option><option>SPS 2</option></select>
+      </label>
+      <label>Fasstyp
+        <select id="f_fasstyp"><option>Fass groß</option><option>Paddel groß</option><option>Paddel klein</option></select>
       </label>
       <label>RZ
-        <select id="f_rz" required></select>
+        <select id="f_rz"></select>
       </label>
       <label>Wechsel (C/UC)
-        <select id="f_switch">
-          <option value="">—</option>
-          <option value="C">C</option>
-          <option value="UC">UC</option>
-        </select>
+        <select id="f_switch"><option value="">—</option><option value="C">C</option><option value="UC">UC</option></select>
       </label>
       <label>Gattung
-        <select id="f_gattung">
-          <option value="Kühe">Kühe</option>
-          <option value="Bullen">Bullen</option>
-          <option value="Kälber">Kälber</option>
-        </select>
+        <select id="f_gattung"><option>Kühe</option><option>Bullen</option><option>Kälber</option></select>
       </label>
       <label>Gewichtsklasse
         <select id="f_gewicht"></select>
@@ -128,9 +123,9 @@
       </label>
       <label>Waschen
         <select id="f_waschen">
-          <option value="auto">automatisch (nach SPS)</option>
-          <option value="1x">1× Waschen (≈ 60 Min)</option>
-          <option value="2x">2× Waschen (≈ 120 Min)</option>
+          <option value="auto">automatisch</option>
+          <option value="1x">1× (≈60 min)</option>
+          <option value="2x">2× (≈120 min)</option>
           <option value="0x">kein Waschen</option>
         </select>
       </label>
@@ -138,18 +133,12 @@
         <input type="time" id="f_hauptweiche_ende">
       </label>
       <label>Status
-        <select id="f_status">
-          <option value="geplant">geplant</option>
-          <option value="läuft">läuft</option>
-          <option value="verschoben">verschoben</option>
-          <option value="fertig">fertig</option>
-        </select>
+        <select id="f_status"><option value="geplant">geplant</option><option value="läuft">läuft</option><option value="verschoben">verschoben</option><option value="fertig">fertig</option></select>
       </label>
       <label class="full">Notiz
-        <input type="text" id="f_notiz" maxlength="120">
+        <input type="text" id="f_notiz" maxlength="140">
       </label>
     </div>
-
     <menu class="dlg-actions">
       <button class="btn" value="cancel">Abbrechen</button>
       <button id="btnSpeichern" class="btn pri" value="default">Speichern</button>
@@ -157,7 +146,7 @@
   </form>
 </dialog>
 
-<!-- Dialog: Überschreiben? -->
+<!-- Überschreiben -->
 <dialog id="overrideDialog">
   <form method="dialog" class="dlg">
     <h3>Standard überschreiben?</h3>
@@ -170,7 +159,49 @@
   </form>
 </dialog>
 
+<!-- Einstellungen -->
+<dialog id="settingsDialog">
+  <form method="dialog" class="dlg">
+    <h3>Einstellungen</h3>
+    <div class="grid">
+      <label>Waschen 1× (Minuten) <input type="number" id="s_wash1" min="0" step="5"></label>
+      <label>Waschen 2× (Minuten) <input type="number" id="s_wash2" min="0" step="5"></label>
+      <label>Wechsel „C“ (Minuten) <input type="number" id="s_c" min="0" step="1"></label>
+      <label>Wechsel „UC“ (Minuten) <input type="number" id="s_uc" min="0" step="1"></label>
+      <label>WE Frühstart <input type="time" id="s_we_start"></label>
+      <label>WE max. Fässer <input type="number" id="s_we_max" min="1" step="1"></label>
+      <label>Standard-Äscher (h) <input type="number" id="s_ae_std" min="1" step="0.5"></label>
+    </div>
+    <menu class="dlg-actions">
+      <button class="btn" value="cancel">Schließen</button>
+      <button id="btnSettingsSave" class="btn pri" value="default">Speichern</button>
+    </menu>
+  </form>
+</dialog>
+
+<!-- Daten-Editor -->
+<dialog id="datenDialog">
+  <form method="dialog" class="dlg">
+    <h3>Daten-Editor (Gewichtsklassen, Stückzahlen, Rezepturen)</h3>
+    <p><small>Hier kannst du Zahlen ohne Code ändern. Änderungen werden lokal gespeichert.</small></p>
+    <div class="grid">
+      <label class="full">gewichtsklassen.json
+        <textarea id="editGewicht" rows="8" spellcheck="false"></textarea>
+      </label>
+      <label class="full">stueckzahl_limits.json
+        <textarea id="editLimits" rows="10" spellcheck="false"></textarea>
+      </label>
+      <label class="full">rezepte.json
+        <textarea id="editRezepte" rows="10" spellcheck="false"></textarea>
+      </label>
+    </div>
+    <menu class="dlg-actions">
+      <button class="btn" value="cancel">Schließen</button>
+      <button id="btnDatenSpeichern" class="btn pri" value="default">Speichern</button>
+    </menu>
+  </form>
+</dialog>
+
 <script src="app.js" defer></script>
 </body>
 </html>
-
