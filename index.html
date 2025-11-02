@@ -1,1 +1,176 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Äscherei & Spalt – Planer v2</title>
+  <link rel="manifest" href="manifest.json" />
+  <link rel="icon" href="assets/icon-192.png" />
+  <link rel="apple-touch-icon" href="assets/icon-512.png" />
+  <link rel="stylesheet" href="styles.css" />
+  <meta name="theme-color" content="#0d1b2a" />
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">
+    <svg class="logo"><use href="assets/suedleder-icons.svg#logo"/></svg>
+    <span>Äscherei & Spalt – Planer</span>
+    <small id="modusBadge" class="badge"></small>
+  </div>
+  <nav class="actions">
+    <button id="btnNeu" class="btn pri">
+      <svg class="i"><use href="assets/suedleder-icons.svg#plus"/></svg> Neuer Eintrag
+    </button>
+    <button id="btnExport" class="btn">
+      <svg class="i"><use href="assets/suedleder-icons.svg#export"/></svg> Export
+    </button>
+    <button id="btnImport" class="btn">
+      <svg class="i"><use href="assets/suedleder-icons.svg#import"/></svg> Import
+    </button>
+    <button id="btnEinstellungen" class="btn">
+      <svg class="i"><use href="assets/suedleder-icons.svg#settings"/></svg> Einstellungen
+    </button>
+  </nav>
+</header>
+
+<main class="wrap">
+  <section class="filters">
+    <label>Tag:
+      <input type="date" id="tagInput"/>
+    </label>
+    <label>Schicht:
+      <select id="schichtSelect">
+        <option value="frueh">Früh</option>
+        <option value="spaet">Spät</option>
+        <option value="nacht">Nacht</option>
+      </select>
+    </label>
+    <label>SPS:
+      <select id="spsFilter">
+        <option value="">Alle</option>
+        <option value="SPS 1">SPS 1</option>
+        <option value="SPS 2">SPS 2</option>
+      </select>
+    </label>
+    <button id="btnHeute" class="btn">Heute</button>
+  </section>
+
+  <section class="table-card">
+    <div class="table-scroll">
+      <table id="planTabelle">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Start</th>
+            <th>SPS</th>
+            <th>RZ</th>
+            <th>Wechsel (C/UC)</th>
+            <th>Gattung</th>
+            <th>Gewichtsklasse</th>
+            <th>Menge (kg)</th>
+            <th>Stück (Auto)</th>
+            <th>Konservierung</th>
+            <th>Waschen</th>
+            <th>Äscher ⌀ (h)</th>
+            <th>LZ gesamt</th>
+            <th>Fertig</th>
+            <th>Status</th>
+            <th>Notiz</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="planBody"></tbody>
+      </table>
+    </div>
+  </section>
+</main>
+
+<!-- Dialog: Neuer/Ändern -->
+<dialog id="eintragDialog">
+  <form method="dialog" class="dlg">
+    <h3 id="dlgTitel">Eintrag</h3>
+    <div class="grid">
+      <label>Start <input type="time" id="f_start" required></label>
+      <label>SPS
+        <select id="f_sps" required>
+          <option>SPS 1</option>
+          <option>SPS 2</option>
+        </select>
+      </label>
+      <label>RZ
+        <select id="f_rz" required></select>
+      </label>
+      <label>Wechsel (C/UC)
+        <select id="f_switch">
+          <option value="">—</option>
+          <option value="C">C</option>
+          <option value="UC">UC</option>
+        </select>
+      </label>
+      <label>Gattung
+        <select id="f_gattung">
+          <option value="Kühe">Kühe</option>
+          <option value="Bullen">Bullen</option>
+          <option value="Kälber">Kälber</option>
+        </select>
+      </label>
+      <label>Gewichtsklasse
+        <select id="f_gewicht"></select>
+      </label>
+      <label>Menge (kg) <input type="number" id="f_menge" step="10" min="0"></label>
+      <label>Konservierung
+        <select id="f_konservierung">
+          <option value="keine">keine</option>
+          <option value="über_nacht">über Nacht (+24 h)</option>
+          <option value="mehrtaegig_2">2 Tage (+48 h)</option>
+          <option value="mehrtaegig_3">3 Tage (+72 h)</option>
+        </select>
+      </label>
+      <label>Waschen
+        <select id="f_waschen">
+          <option value="auto">automatisch (nach SPS)</option>
+          <option value="1x">1× Waschen (≈ 60 Min)</option>
+          <option value="2x">2× Waschen (≈ 120 Min)</option>
+          <option value="0x">kein Waschen</option>
+        </select>
+      </label>
+      <label>Ende Hauptweiche (optional)
+        <input type="time" id="f_hauptweiche_ende">
+      </label>
+      <label>Status
+        <select id="f_status">
+          <option value="geplant">geplant</option>
+          <option value="läuft">läuft</option>
+          <option value="verschoben">verschoben</option>
+          <option value="fertig">fertig</option>
+        </select>
+      </label>
+      <label class="full">Notiz
+        <input type="text" id="f_notiz" maxlength="120">
+      </label>
+    </div>
+
+    <menu class="dlg-actions">
+      <button class="btn" value="cancel">Abbrechen</button>
+      <button id="btnSpeichern" class="btn pri" value="default">Speichern</button>
+    </menu>
+  </form>
+</dialog>
+
+<!-- Dialog: Überschreiben? -->
+<dialog id="overrideDialog">
+  <form method="dialog" class="dlg">
+    <h3>Standard überschreiben?</h3>
+    <p id="overrideText"></p>
+    <menu class="dlg-actions">
+      <button class="btn" value="once">Nur einmalig</button>
+      <button class="btn pri" value="persist">Dauerhaft speichern</button>
+      <button class="btn" value="cancel">Abbrechen</button>
+    </menu>
+  </form>
+</dialog>
+
+<script src="app.js" defer></script>
+</body>
+</html>
 
