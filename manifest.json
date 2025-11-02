@@ -1,7 +1,7 @@
 {
-  "name": "Äscherei & Spalt – Planer v2",
-  "short_name": "Planer v2",
-  "start_url": "index.html",
+  "name": "Äscherei & Spalt – Planer",
+  "short_name": "Äscherei-Planer",
+  "start_url": "./",
   "display": "standalone",
   "background_color": "#0b1320",
   "theme_color": "#0d1b2a",
@@ -10,4 +10,3 @@
     { "src": "assets/icon-512.png", "sizes": "512x512", "type": "image/png" }
   ]
 }
-
