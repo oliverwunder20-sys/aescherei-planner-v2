@@ -1,11 +1,12 @@
 {
-  "21": { "name": "LWC Schwöde Frischware sd Bullen außer Autoleder", "aescherdauerStd_h": 15, "waschen": "auto" },
-  "22": { "name": "LWC Schwöde Frischware sd Kühe",                    "aescherdauerStd_h": 15, "waschen": "auto" },
-  "23": { "name": "LWC Schwöde Flanken",                                "aescherdauerStd_h": 15, "waschen": "auto" },
-  "24": { "name": "LWC Schwöde Frischware sd Bullen außer Autoleder",   "aescherdauerStd_h": 15, "waschen": "auto" },
-  "25": { "name": "LWC Schwöde Frischware sb Ware Sep–Apr",             "aescherdauerStd_h": 15, "waschen": "auto", "konservierung": "über_nacht" },
-  "26": { "name": "LWC Schwöde Salzware sd Ware außer Autoleder",       "aescherdauerStd_h": 15, "waschen": "auto" },
-  "30": { "name": "EC Liming (Kälber, unsplitted)",                      "aescherdauerStd_h": 26, "waschen": "auto" },
-  "31": { "name": "MW Liming unsplitted (Kälber)",                       "aescherdauerStd_h": 26, "waschen": "auto" }
+  "21": {"name": "RZ 21 – Frischware (Bullen außer Autoleder)", "aescherdauerStd_h": 15, "waschen": "auto"},
+  "22": {"name": "RZ 22 – Frischware (Kühe)", "aescherdauerStd_h": 15, "waschen": "auto"},
+  "23": {"name": "RZ 23 – Flanken (Äscher ≥13 h)", "aescherdauerStd_h": 15, "waschen": "auto"},
+  "24": {"name": "RZ 24 – Frischware (Bullen außer Autoleder)", "aescherdauerStd_h": 15, "waschen": "auto"},
+  "25": {"name": "RZ 25 – Schwarzbunte Bullen (Sep–Apr)", "aescherdauerStd_h": 15, "waschen": "auto"},
+  "26": {"name": "RZ 26 – Salzware", "aescherdauerStd_h": 23.5, "waschen": "auto"},
+  "27": {"name": "RZ 27 – lang", "aescherdauerStd_h": 23.5, "waschen": "auto"},
+  "28": {"name": "RZ 28 – lang", "aescherdauerStd_h": 23.5, "waschen": "auto"},
+  "30": {"name": "RZ 30 – Kälber (EC Liming / unsplitted)", "aescherdauerStd_h": 26, "waschen": "auto"},
+  "31": {"name": "RZ 31 – Kälber unsplitted (MW)", "aescherdauerStd_h": 27, "waschen": "auto"}
 }
-
