@@ -1,1 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none">
+  <!-- Logo-Anmutung im Südleder-Stil (neutral gehalten) -->
+  <symbol id="logo" viewBox="0 0 64 64">
+    <path fill="#d8e3f7" d="M10 18c8-8 36-8 44 0v28c-8 8-36 8-44 0V18z"/>
+    <path fill="#9fb4d6" d="M14 22c6-6 30-6 36 0v20c-6 6-30 6-36 0V22z"/>
+    <circle cx="32" cy="32" r="8" fill="#1f6feb"/>
+  </symbol>
+  <symbol id="plus" viewBox="0 0 24 24"><path fill="currentColor" d="M11 5h2v14h-2zM5 11h14v2H5z"/></symbol>
+  <symbol id="edit" viewBox="0 0 24 24"><path fill="currentColor" d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04a1 1 0 0 0 0-1.41l-2.34-2.34a1 1 0 0 0-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></symbol>
+  <symbol id="trash" viewBox="0 0 24 24"><path fill="currentColor" d="M6 7h12v2H6zm2 3h8l-1 11H9L8 10zM10 4h4l1 2H9z"/></symbol>
+  <symbol id="export" viewBox="0 0 24 24"><path fill="currentColor" d="M5 20h14v-8h2v10H3V12h2zm7-16l5 5h-3v6h-4V9H7z"/></symbol>
+  <symbol id="import" viewBox="0 0 24 24"><path fill="currentColor" d="M5 20h14V10h2v12H3V10h2zM12 4L7 9h3v6h4V9h3z"/></symbol>
+  <symbol id="settings" viewBox="0 0 24 24"><path fill="currentColor" d="M12 8a4 4 0 1 1 0 8 4 4 0 0 1 0-8zm8.94 4.5l1.66 1-1.5 2.6-1.9-.5a7.9 7.9 0 0 1-1.4 1l.1 2h-3l-.7-1.8c-.5.1-1 .2-1.6.2s-1.1-.1-1.6-.2L9 21H6l.1-2a7.9 7.9 0 0 1-1.4-1l-1.9.5-1.5-2.6 1.7-1a8.8 8.8 0 0 1 0-2l-1.7-1 1.5-2.6 1.9.5c.4-.4.9-.7 1.4-1L6 5h3l.7 1.8c.5-.1 1-.2 1.6-.2s1.1.1 1.6.2L15 5h3l-.1 2a7.9 7.9 0 0 1 1.4 1l1.9-.5 1.5 2.6-1.7 1c.1.7.1 1.3 0 2z"/></symbol>
+</svg>
 
