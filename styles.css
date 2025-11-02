@@ -1,1 +1,51 @@
+:root{
+  --bg:#0b1320; --card:#101a2b; --muted:#7a8ca5; --text:#eaf2ff;
+  --pri:#1f6feb; --pri-2:#1652b7; --ok:#00b36b; --warn:#f0b429; --err:#ff5b6e;
+  --grid: 14px;
+  font-synthesis-weight: none;
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0; background:linear-gradient(180deg,#0b1320,#0e1626 40%,#0b1320);
+  color:var(--text); font:500 16px/1.4 system-ui,Segoe UI,Roboto,Ubuntu,Arial;
+}
+.topbar{display:flex;justify-content:space-between;align-items:center;padding:10px 16px;border-bottom:1px solid #1c2740;background:#0c1729;position:sticky;top:0;z-index:20}
+.brand{display:flex;align-items:center;gap:10px}
+.brand .logo{width:28px;height:28px}
+.badge{margin-left:8px;background:#17233b;border:1px solid #2a3a5b;padding:2px 8px;border-radius:999px}
+.actions{display:flex;gap:8px;flex-wrap:wrap}
+.btn{background:#16233b;border:1px solid #2a3a5b;color:var(--text);padding:8px 12px;border-radius:10px;cursor:pointer}
+.btn:hover{background:#1b2b4a}
+.btn.pri{background:var(--pri);border-color:var(--pri-2)}
+.btn .i{width:16px;height:16px;vertical-align:-2px;margin-right:6px}
+
+.wrap{max-width:1200px;margin:0 auto;padding:16px}
+.filters{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin-bottom:12px}
+.filters label{display:flex;flex-direction:column;gap:6px;color:#cfe2ff}
+.table-card{background:var(--card);border:1px solid #1b2742;border-radius:14px;overflow:hidden}
+.table-scroll{overflow:auto;max-height:70vh}
+table{width:100%;border-collapse:separate;border-spacing:0}
+th,td{padding:10px;border-bottom:1px solid #18243f;text-align:left;white-space:nowrap}
+thead th{position:sticky;top:0;background:#0f1a2d;z-index:5}
+td:last-child{text-align:right}
+.status-tag{padding:4px 8px;border-radius:999px;border:1px solid #2a3a5b}
+.st-geplant{background:#14223d}
+.st-laeuft{background:#0a2f23;border-color:#0f5; }
+.st-verschoben{background:#3a2a07;border-color:#f0b429}
+.st-fertig{background:#0f2f0f;border-color:#00b36b}
+
+dialog{border:none;border-radius:14px;padding:0;background:#0f1a2d;color:var(--text);width:min(720px,92vw)}
+.dlg{padding:16px}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.grid .full{grid-column:1/-1}
+.dlg-actions{display:flex;justify-content:flex-end;gap:8px;margin-top:10px}
+
+@media (max-width:860px){
+  .grid{grid-template-columns:1fr}
+  .actions{gap:6px}
+  th:nth-child(1),td:nth-child(1),
+  th:nth-child(10),td:nth-child(10){display:none}
+  .table-scroll{max-height:none}
+}
 
